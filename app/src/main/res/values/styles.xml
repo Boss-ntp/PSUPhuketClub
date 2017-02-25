@@ -1,0 +1,45 @@
+<resources>
+
+<!-- Base application theme. -->
+<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <!-- Customize your theme here. -->
+    <item name="android:actionBarStyle">@style/MyActionBar</item>
+    <!-- Support library compatibility -->
+    <item name="actionBarStyle">@style/MyActionBar</item>
+</style>
+
+<!-- ActionBar styles -->
+<style name="MyActionBar"
+    parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+    <item name="android:background">@drawable/bgbar</item>
+
+    <!-- Support library compatibility -->
+    <item name="background">@drawable/bgbar</item>
+</style>
+
+<style name="AppTheme.NoActionBar">
+    <item name="windowActionBar">false</item>
+    <item name="windowNoTitle">true</item>
+</style>
+
+<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="AppTheme.Button.red" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#fe5d5d</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="AppTheme.Button.yellow" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#FDD835</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+    <style name="AppTheme.Button.darkbule" parent="Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">#44576b</item>
+        <item name="android:textColor">#FFFFFF</item>
+    </style>
+
+
+</resources>

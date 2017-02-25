@@ -1,0 +1,194 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.psuclubapp.psuclubapp.AddClubFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ชื่อชมรม"
+                android:textStyle="bold"
+                android:textColor="#f1605e"/>
+
+            <EditText
+                android:id="@+id/nameClub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="รายละเอียดชมรม"
+                android:textStyle="bold"
+                android:textColor="#f1605e"/>
+
+            <EditText
+                android:id="@+id/detailClub"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="3" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="รหัสนักศึกษาของประธานชมรม"
+                android:textStyle="bold"
+                android:textColor="#f1605e"/>
+
+            <EditText
+                android:id="@+id/stdIDHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:lines="1"
+                android:maxLength="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ชื่อของประธานชมรม"
+                android:textStyle="bold"
+                android:textColor="#f1605e"/>
+
+            <EditText
+                android:id="@+id/nameHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เบอร์โทรของประธานชมรม"
+                android:textStyle="bold"
+                android:textColor="#f1605e"/>
+
+            <EditText
+                android:id="@+id/phoneHead"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLength="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ชื่อของที่ปรึกษาชมรม"
+                android:textStyle="bold"
+                android:textColor="#f1605e"/>
+
+            <EditText
+                android:id="@+id/nameAj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="เบอร์โทรของที่ปรึกษาชมรม"
+                android:textStyle="bold"
+                android:textColor="#f1605e"/>
+
+            <EditText
+                android:id="@+id/phoneAj"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:lines="1"
+                android:maxLength="10" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="สำหรับคณะ..."
+                android:textStyle="bold"
+                android:textColor="#f1605e"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/id_FHT"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FHT" />
+
+                <CheckBox
+                    android:id="@+id/id_FIS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FIS" />
+
+                <CheckBox
+                    android:id="@+id/id_FTE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="FTE" />
+
+                <CheckBox
+                    android:id="@+id/id_CoE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CoE" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="#d7d7cc"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/picClub"
+                        android:layout_width="200dp"
+                        android:layout_height="150dp"
+                        android:src="@drawable/logo" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5">
+
+                    <Button
+                        android:id="@+id/changePicClub"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:theme="@style/AppTheme.Button.darkbule"
+                        android:text="เพิ่มรูปภาพ" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/addClub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:lines="1"
+                android:theme="@style/AppTheme.Button.red"
+                android:text="เพิ่มชมรม" />
+        </LinearLayout>
+
+    </ScrollView>
+</FrameLayout>
