@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -33,6 +34,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
     String startT = null;
     String endT = null;
     String location = null;
+    String followJoin = null;
     String nameClub = null;
 
     public static String username_sp = null;
@@ -40,6 +42,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
     public static Integer checkActHead_sp;
     public static Integer checkActFollow_sp;
     public static Integer checkActAll_sp;
+    public static Integer checkActMe_sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +55,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
         checkActHead_sp = sp.getInt("dataCheckActHead",0);
         checkActFollow_sp = sp.getInt("dataCheckActFollow",0);
         checkActAll_sp = sp.getInt("dataCheckActAll",0);
+        checkActMe_sp = sp.getInt("dataCheckActMe",0);
 
         Bundle data = getIntent().getExtras();
         id_act = data.getString("id_act");
@@ -62,6 +66,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
         startT = data.getString("startT");
         endT = data.getString("endT");
         location = data.getString("location");
+        followJoin = data.getString("followJoin");
         nameClub = data.getString("nameClub");
 
         final TextView subAct_A = (TextView) findViewById(R.id.subAct);
@@ -72,6 +77,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
         final TextView endT_A = (TextView) findViewById(R.id.endT);
         final TextView location_A = (TextView) findViewById(R.id.location);
         final TextView nameClub_A = (TextView) findViewById(R.id.nameClub);
+        final Switch followJoin_A = (Switch) findViewById(R.id.followJoin);
         final ImageView picAct = (ImageView) findViewById(R.id.picAct);
 
         subAct_A.setText(subAct);
@@ -81,6 +87,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
         startT_A.setText(startT);
         endT_A.setText(endT);
         location_A.setText(location);
+        followJoin_A.setChecked(convertStringToBoolean(followJoin));
         nameClub_A.setText(nameClub);
         switch (id_act.trim()){
             case "15": picAct.setImageResource(R.drawable.a15); break;
@@ -99,6 +106,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
         Log.d("checkActHead_sp", String.valueOf(checkActHead_sp));
         Log.d("checkActFollow_sp", String.valueOf(checkActFollow_sp));
         Log.d("checkActAll_sp", String.valueOf(checkActAll_sp));
+        Log.d("checkActMe_sp", String.valueOf(checkActMe_sp));
 
 
         if(checkActHead_sp == 1){
@@ -121,6 +129,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
                 data.putExtra("startT", startT);
                 data.putExtra("endT", endT);
                 data.putExtra("location", location);
+                data.putExtra("followJoin", followJoin);
                 startActivity(data);
                 finish();
             }
@@ -160,6 +169,11 @@ public class ShowDetailActActivity extends AppCompatActivity {
                 }
                 else if(checkActAll_sp == 1){
                     Intent intent = new Intent(getBaseContext(), ActAllActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+                else if(checkActMe_sp == 1){
+                    Intent intent = new Intent(getBaseContext(), ActMeActivity.class);
                     startActivity(intent);
                     finish();
                 }
@@ -206,6 +220,15 @@ public class ShowDetailActActivity extends AppCompatActivity {
             finish();
         }
 
+    }
+
+    public Boolean convertStringToBoolean(String s) {
+
+        if (Integer.valueOf(s) == 1) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }

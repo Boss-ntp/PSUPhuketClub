@@ -44,7 +44,8 @@
         <activity android:name=".ShowDetailActActivity" />
         <activity android:name=".ActFollowActivity" />
         <activity android:name=".ActHeadActivity" />
-        <activity android:name=".ActAllActivity"></activity>
+        <activity android:name=".ActAllActivity" />
+        <activity android:name=".ActMeActivity"></activity>
     </application>
 
 </manifest>

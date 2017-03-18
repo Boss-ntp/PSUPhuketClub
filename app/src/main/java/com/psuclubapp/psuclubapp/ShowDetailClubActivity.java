@@ -328,7 +328,6 @@ public class ShowDetailClubActivity extends AppCompatActivity {
 
     public Integer convertStringToInteger(String s) {
         return Integer.valueOf(s);
-
     }
 
     public Boolean convertStringToBoolean(String s) {

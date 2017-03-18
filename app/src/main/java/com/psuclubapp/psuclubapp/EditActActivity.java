@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.io.IOException;
@@ -34,6 +35,7 @@ public class EditActActivity extends AppCompatActivity {
     String startT = null;
     String endT = null;
     String location = null;
+    String followJoin = null;
 
     public Integer role_sp = 0;
     public String username_sp = null;
@@ -58,6 +60,7 @@ public class EditActActivity extends AppCompatActivity {
         startT = data.getString("startT");
         endT = data.getString("endT");
         location = data.getString("location");
+        followJoin = data.getString("followJoin");
 
         final EditText subAct_A = (EditText) findViewById(R.id.subAct);
         final EditText detailAct_A = (EditText) findViewById(R.id.detailAct);
@@ -66,6 +69,7 @@ public class EditActActivity extends AppCompatActivity {
         final EditText startT_A = (EditText) findViewById(R.id.startT);
         final EditText endT_A = (EditText) findViewById(R.id.endT);
         final EditText location_A = (EditText) findViewById(R.id.location);
+        final Switch followJoin_A = (Switch) findViewById(R.id.followJoin);
         final ImageView picAct = (ImageView) findViewById(R.id.picAct);
 
         subAct_A.setText(subAct);
@@ -75,6 +79,7 @@ public class EditActActivity extends AppCompatActivity {
         startT_A.setText(startT);
         endT_A.setText(endT);
         location_A.setText(location);
+        followJoin_A.setChecked(convertStringToBoolean(followJoin));
         switch (id_act.trim()){
             case "15": picAct.setImageResource(R.drawable.a15); break;
             case "16": picAct.setImageResource(R.drawable.a16); break;
@@ -98,13 +103,16 @@ public class EditActActivity extends AppCompatActivity {
                 endT = endT_A.getText().toString();
                 location = location_A.getText().toString();
 
+                Boolean checkFollowJoin = followJoin_A.isChecked();
+                final int followJoin = (checkFollowJoin) ? 1 : 0;
+
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(EditActActivity.this); //pop up เด้งถามว่าจะลบมั้ย
                 builder2.setTitle("ท่านต้องการแก้ไขกิจกรรมนี้ใช่หรือไม่ ?");
                 builder2.setCancelable(true);
                 builder2.setNegativeButton("ใช่", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        new edit().execute(subAct, detailAct, startD, endD, startT, endT,location,username_sp);
+                        new edit().execute(id_act, subAct, detailAct, startD, endD, startT, endT, location, String.valueOf(followJoin), username_sp);
                     }
                 });
                 builder2.setPositiveButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -136,14 +144,16 @@ public class EditActActivity extends AppCompatActivity {
         protected String doInBackground(String... params) {
 
             RequestBody body = new FormBody.Builder()
-                    .add("subAct_A",params[0])
-                    .add("detailAct_A", params[1])
-                    .add("startD_A",params[2])
-                    .add("endD_A",params[3])
-                    .add("startT_A",params[4])
-                    .add("endT_A",params[5])
-                    .add("location_A",params[6])
-                    .add("stdID_A",params[7])
+                    .add("id_act_A",params[0])
+                    .add("subAct_A",params[1])
+                    .add("detailAct_A", params[2])
+                    .add("startD_A",params[3])
+                    .add("endD_A",params[4])
+                    .add("startT_A",params[5])
+                    .add("endT_A",params[6])
+                    .add("location_A",params[7])
+                    .add("followJoin_A",params[8])
+                    .add("stdID_A",params[9])
                     .build();
 
             OkHttpClient oktest = new OkHttpClient.Builder()
@@ -169,6 +179,15 @@ public class EditActActivity extends AppCompatActivity {
             Intent intent = new Intent(getBaseContext(), ActHeadActivity.class);
             startActivity(intent);
             finish();
+        }
+    }
+
+    public Boolean convertStringToBoolean(String s) {
+
+        if (Integer.valueOf(s) == 1) {
+            return true;
+        } else {
+            return false;
         }
     }
 }

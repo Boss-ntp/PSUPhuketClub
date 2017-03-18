@@ -26,7 +26,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class ActFollowActivity extends AppCompatActivity {
+public class ActMeActivity extends AppCompatActivity {
 
     public ArrayList<String> id_act_A = new ArrayList<>();
     public ArrayList<String> subAct_A = new ArrayList<>();
@@ -35,17 +35,17 @@ public class ActFollowActivity extends AppCompatActivity {
     public ArrayList<String> endT_A = new ArrayList<>();
     public ArrayList<String> startD_A = new ArrayList<>();
     public ArrayList<String> endD_A = new ArrayList<>();
-    public ArrayList<String> followJoin_A = new ArrayList<>();
     public ArrayList<String> location_A = new ArrayList<>();
+    public ArrayList<String> followJoin_A = new ArrayList<>();
     public ArrayList<String> nameClub_A = new ArrayList<>();
-    public ListView listActFollow;
+    public ListView listActMe;
 
     public String username_sp = null;
     public Integer role_sp = 0;
     public Integer checkActHead_sp = 0;
-    public Integer checkActFollow_sp = 1;
+    public Integer checkActFollow_sp = 0;
     public Integer checkActAll_sp = 0;
-    public Integer checkActMe_sp = 0;
+    public Integer checkActMe_sp = 1;
 
     SharedPreferences sp;
     SharedPreferences.Editor editor;
@@ -53,7 +53,7 @@ public class ActFollowActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_act_follow);
+        setContentView(R.layout.activity_act_me);
 
         sp = getSharedPreferences("ConfigUser", Context.MODE_PRIVATE);
         editor = sp.edit();
@@ -66,7 +66,7 @@ public class ActFollowActivity extends AppCompatActivity {
         SharedPreferences sp = this.getSharedPreferences("ConfigUser", Context.MODE_PRIVATE);
         username_sp = sp.getString("dataUsername", null);
         role_sp = sp.getInt("dataRole", 0);
-        listActFollow = (ListView) findViewById(R.id.listActFollow);
+        listActMe = (ListView) findViewById(R.id.listActMe);
         new load().execute(username_sp);
 
         ImageView exit = (ImageView) findViewById(R.id.exit);
@@ -90,7 +90,7 @@ public class ActFollowActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressDialog = new ProgressDialog(ActFollowActivity.this);
+            progressDialog = new ProgressDialog(ActMeActivity.this);
             progressDialog.setMessage("กำลังโหลด...");
             progressDialog.show();
         }
@@ -108,7 +108,7 @@ public class ActFollowActivity extends AppCompatActivity {
                     .readTimeout(30, TimeUnit.SECONDS)
                     .build();//ใช้ OkHttp ติดต่อกับ server
 
-            Request request = new Request.Builder().url("http://psuclub.esy.es/PSUClubApp/showActFollow.php").post(body).build();
+            Request request = new Request.Builder().url("http://psuclub.esy.es/PSUClubApp/showActMe.php").post(body).build();
 
             try {
                 Response response = oktest.newCall(request).execute();
@@ -171,9 +171,9 @@ public class ActFollowActivity extends AppCompatActivity {
                 }
 
                 CustomList2 customList2 = new CustomList2(getBaseContext(), subAct_A,detailAct_A,id_act_A);
-                listActFollow.setAdapter(customList2);
+                listActMe.setAdapter(customList2);
 
-                listActFollow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                listActMe.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent data = new Intent(getBaseContext(), ShowDetailActActivity.class);

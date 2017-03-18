@@ -16,7 +16,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 
 import java.io.IOException;
 
@@ -50,7 +52,9 @@ public class  AddActFragment extends Fragment {
         final EditText startD_A = (EditText)view.findViewById(R.id.startD);
         final EditText endD_A = (EditText)view.findViewById(R.id.endD);
         final EditText location_A = (EditText)view.findViewById(R.id.location);
+        final Switch followJoin_A = (Switch)view.findViewById(R.id.followJoin);
         final String stdID_A = username_sp;
+
 
         Button addAct_A = (Button)view.findViewById(R.id.addAct);
         addAct_A.setOnClickListener(new View.OnClickListener() {
@@ -65,13 +69,17 @@ public class  AddActFragment extends Fragment {
                 final String location = location_A.getText().toString();
                 final String stdID = stdID_A;
 
+                Boolean checkFollowJoin = followJoin_A.isChecked();
+                final int followJoin = (checkFollowJoin) ? 1 : 0;
+
                 AlertDialog.Builder builder2 = new AlertDialog.Builder(getActivity());
                 builder2.setTitle("ท่านต้องการสร้างกิจกรรมดังกล่าวใช่หรือไม่ ?");
                 builder2.setCancelable(true);
                 builder2.setNegativeButton("ใช่", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        new add().execute(subAct,detailAct,startT,endT,startD,endD,location,stdID);
+                        Log.d("Join",String.valueOf(followJoin));
+                        new add().execute(subAct, detailAct, startT, endT, startD, endD, location, String.valueOf(followJoin), stdID);
                     }
                 });
                 builder2.setPositiveButton("ยกเลิก", new DialogInterface.OnClickListener() {
@@ -110,7 +118,8 @@ public class  AddActFragment extends Fragment {
                     .add("startD_A",params[4])
                     .add("endD_A",params[5])
                     .add("location_A",params[6])
-                    .add("stdID_A",params[7])
+                    .add("followJoin_A",params[7])
+                    .add("stdID_A",params[8])
                     .build();
 
             OkHttpClient oktest = new OkHttpClient();

@@ -44,6 +44,7 @@ public class ActAllActivity extends AppCompatActivity {
     public Integer checkActHead_sp = 0;
     public Integer checkActFollow_sp = 0;
     public Integer checkActAll_sp = 1;
+    public Integer checkActMe_sp = 0;
 
     SharedPreferences sp;
     SharedPreferences.Editor editor;
@@ -58,6 +59,7 @@ public class ActAllActivity extends AppCompatActivity {
         editor.putInt("dataCheckActHead", checkActHead_sp);
         editor.putInt("dataCheckActFollow", checkActFollow_sp);
         editor.putInt("dataCheckActAll", checkActAll_sp);
+        editor.putInt("dataCheckActMe", checkActMe_sp);
         editor.commit();
 
         Log.d("checkActHead_sp", String.valueOf(checkActHead_sp));

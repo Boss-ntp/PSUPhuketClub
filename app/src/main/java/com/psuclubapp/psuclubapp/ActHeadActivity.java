@@ -36,14 +36,16 @@ public class ActHeadActivity extends AppCompatActivity {
     public ArrayList<String> startD_A = new ArrayList<>();
     public ArrayList<String> endD_A = new ArrayList<>();
     public ArrayList<String> location_A = new ArrayList<>();
+    public ArrayList<String> followJoin_A = new ArrayList<>();
     public ArrayList<String> nameClub_A = new ArrayList<>();
-    public ListView listAactHead;
+    public ListView listActHead;
 
     public String username_sp = null;
     public Integer role_sp = 0;
     public Integer checkActHead_sp = 1;
     public Integer checkActFollow_sp = 0;
     public Integer checkActAll_sp = 0;
+    public Integer checkActMe_sp = 0;
 
     SharedPreferences sp;
     SharedPreferences.Editor editor;
@@ -58,12 +60,13 @@ public class ActHeadActivity extends AppCompatActivity {
         editor.putInt("dataCheckActHead", checkActHead_sp);
         editor.putInt("dataCheckActFollow", checkActFollow_sp);
         editor.putInt("dataCheckActAll", checkActAll_sp);
+        editor.putInt("dataCheckActMe", checkActMe_sp);
         editor.commit();
 
         SharedPreferences sp = this.getSharedPreferences("ConfigUser", Context.MODE_PRIVATE);
         username_sp = sp.getString("dataUsername", null);
         role_sp = sp.getInt("dataRole", 0);
-        listAactHead = (ListView) findViewById(R.id.listAactHead);
+        listActHead = (ListView) findViewById(R.id.listActHead);
         new load().execute(username_sp);
 
         ImageView exit = (ImageView) findViewById(R.id.exit);
@@ -134,6 +137,7 @@ public class ActHeadActivity extends AppCompatActivity {
             startD_A = new ArrayList<>();
             endD_A = new ArrayList<>();
             location_A = new ArrayList<>();
+            followJoin_A = new ArrayList<>();
             nameClub_A = new ArrayList<>();
 
             for(int i = 0; i<j.length();i++){
@@ -146,6 +150,7 @@ public class ActHeadActivity extends AppCompatActivity {
                     String startD = j.getJSONObject(i).getString("startD");
                     String endD = j.getJSONObject(i).getString("endD");
                     String location = j.getJSONObject(i).getString("location");
+                    String followJoin = j.getJSONObject(i).getString("followJoin");
                     String nameClub = j.getJSONObject(i).getString("nameClub");
 
                     Log.d("sub",subAct);
@@ -158,6 +163,7 @@ public class ActHeadActivity extends AppCompatActivity {
                     startD_A.add(startD);
                     endD_A.add(endD);
                     location_A.add(location);
+                    followJoin_A.add(followJoin);
                     nameClub_A.add(nameClub);
 
                 } catch (JSONException e) {
@@ -165,9 +171,9 @@ public class ActHeadActivity extends AppCompatActivity {
                 }
 
                 CustomList2 customList2 = new CustomList2(getBaseContext(), subAct_A,detailAct_A,id_act_A);
-                listAactHead.setAdapter(customList2);
+                listActHead.setAdapter(customList2);
 
-                listAactHead.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                listActHead.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent data = new Intent(getBaseContext(), ShowDetailActActivity.class);
@@ -179,6 +185,7 @@ public class ActHeadActivity extends AppCompatActivity {
                         data.putExtra("startD",startD_A.get(position));
                         data.putExtra("endD",endD_A.get(position));
                         data.putExtra("location",location_A.get(position));
+                        data.putExtra("followJoin",followJoin_A.get(position));
                         data.putExtra("nameClub",nameClub_A.get(position));
                         startActivity(data);
                         finish();

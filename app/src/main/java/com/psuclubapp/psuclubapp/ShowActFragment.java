@@ -36,6 +36,16 @@ public class ShowActFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_show_act, container, false);
 
+        ImageView Me = (ImageView) view.findViewById(R.id.act_me);
+        Me.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity().getBaseContext(), ActMeActivity.class);
+                startActivity(intent);
+                getActivity().finish();
+            }
+        });
+
         ImageView Follow = (ImageView) view.findViewById(R.id.act_follow);
         Follow.setOnClickListener(new View.OnClickListener() {
             @Override

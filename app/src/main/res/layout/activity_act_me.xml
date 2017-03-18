@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#B2DFDB"
-    tools:context="com.psuclubapp.psuclubapp.ActHeadActivity">
+    tools:context="com.psuclubapp.psuclubapp.ActMeActivity">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +25,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="กิจกรรมที่ดูแล"
+                    android:text="กิจกรรมของฉัน"
                     android:padding="5dp"
                     android:textStyle="bold" />
             </LinearLayout>
@@ -46,7 +46,7 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/listActHead"
+            android:id="@+id/listActMe"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginTop="5dp"

@@ -18,6 +18,19 @@
             android:layout_weight="1"
             android:background="#36D7B7">
             <ImageView
+                android:id="@+id/act_me"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/act_me"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#44576b">
+            <ImageView
                 android:id="@+id/act_follow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -29,7 +42,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="#4DD0E1">
+            android:background="#f1605e">
             <ImageView
                 android:id="@+id/act_head"
                 android:layout_width="wrap_content"
