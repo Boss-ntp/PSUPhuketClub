@@ -178,11 +178,10 @@
                     android:layout_weight="0.5">
 
                     <Button
-                        android:id="@+id/changePicClub"
+                        android:id="@+id/editPicClub"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:theme="@style/AppTheme.Button.darkbule"
-                        android:text="เปลี่ยนรูปภาพ" />
+                        android:theme="@style/AppTheme.Button.darkbule"/>
                 </LinearLayout>
             </LinearLayout>
 

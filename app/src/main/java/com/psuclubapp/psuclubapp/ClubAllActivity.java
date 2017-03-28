@@ -40,6 +40,7 @@ public class ClubAllActivity extends AppCompatActivity {
     public ArrayList<String> id_FTE_A = new ArrayList<>();
     public ArrayList<String> id_CoE_A = new ArrayList<>();
     public ArrayList<String> id_club_A = new ArrayList<>();
+    public ArrayList<String> picClub_A = new ArrayList<>();
     public ListView listViewAll;
 
     public String username_sp = null;
@@ -144,6 +145,7 @@ public class ClubAllActivity extends AppCompatActivity {
             id_FTE_A = new ArrayList<>();
             id_CoE_A = new ArrayList<>();
             id_club_A = new ArrayList<>();
+            picClub_A = new ArrayList<>();
 
             for (int i = 0; i < j.length(); i++) {
                 try {
@@ -159,6 +161,7 @@ public class ClubAllActivity extends AppCompatActivity {
                     String id_FIS = j.getJSONObject(i).getString("fac_fis");
                     String id_FTE = j.getJSONObject(i).getString("fac_fte");
                     String id_CoE = j.getJSONObject(i).getString("fac_coe");
+                    String picClub = j.getJSONObject(i).getString("picClub");
 
                     Log.d("name ", nameClub);
                     // Log.d("fac ",id_fac.toString());
@@ -175,13 +178,15 @@ public class ClubAllActivity extends AppCompatActivity {
                     id_FTE_A.add(id_FTE);
                     id_CoE_A.add(id_CoE);
                     id_club_A.add(id_club);
+                    picClub_A.add(picClub);
+
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                CustomList customList = new CustomList(getBaseContext(), nameClub_A, detailClub_A,id_club_A);
+                CustomList customList = new CustomList(getBaseContext(), nameClub_A, detailClub_A, id_club_A, picClub_A);
                 listViewAll.setAdapter(customList);
 
                 listViewAll.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -200,6 +205,7 @@ public class ClubAllActivity extends AppCompatActivity {
                         data.putExtra("id_FTE", id_FTE_A.get(position));
                         data.putExtra("id_CoE", id_CoE_A.get(position));
                         data.putExtra("id_club", id_club_A.get(position));
+                        data.putExtra("picClub",picClub_A.get(position));
                         startActivity(data);
                         finish();
                     }

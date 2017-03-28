@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -29,7 +32,6 @@ import okhttp3.Response;
 import static android.R.attr.data;
 import static com.psuclubapp.psuclubapp.R.drawable.logoapp;
 
-
 public class ShowDetailClubActivity extends AppCompatActivity {
 
     String nameClub = null;
@@ -44,6 +46,7 @@ public class ShowDetailClubActivity extends AppCompatActivity {
     String id_FTE = null;
     String id_CoE = null;
     String id_club = null;
+    String picClub = null;
 
     public static String username_sp = null;
     public static Integer role_sp = 0;
@@ -85,6 +88,7 @@ public class ShowDetailClubActivity extends AppCompatActivity {
         id_FTE = data.getString("id_FTE");
         id_CoE = data.getString("id_CoE");
         id_club = data.getString("id_club");
+        picClub = data.getString("picClub");
 //        Log.d("xxxx",name);
 
         final TextView nameClub_A = (TextView) findViewById(R.id.nameClub);
@@ -98,7 +102,7 @@ public class ShowDetailClubActivity extends AppCompatActivity {
         final CheckBox id_FIS_A = (CheckBox) findViewById(R.id.id_FIS);
         final CheckBox id_FTE_A = (CheckBox) findViewById(R.id.id_FTE);
         final CheckBox id_CoE_A = (CheckBox) findViewById(R.id.id_CoE);
-        final ImageView picClub = (ImageView) findViewById(R.id.picClub);
+        final ImageView picClub_A = (ImageView) findViewById(R.id.picClub);
 
         nameClub_A.setText(nameClub);
         detailClub_A.setText(detailClub);
@@ -111,18 +115,16 @@ public class ShowDetailClubActivity extends AppCompatActivity {
         id_FIS_A.setChecked(convertStringToBoolean(id_FIS));
         id_FTE_A.setChecked(convertStringToBoolean(id_FTE));
         id_CoE_A.setChecked(convertStringToBoolean(id_CoE));
-        switch (id_club.trim()){
-            case "6": picClub.setImageResource(R.drawable.c6); break;
-            case "7": picClub.setImageResource(R.drawable.c7); break;
-            case "8": picClub.setImageResource(R.drawable.c8); break;
-            case "9": picClub.setImageResource(R.drawable.c9); break;
-            case "10": picClub.setImageResource(R.drawable.c10); break;
-            case "11": picClub.setImageResource(R.drawable.c11); break;
-            case "12": picClub.setImageResource(R.drawable.c12); break;
-            case "13": picClub.setImageResource(R.drawable.c13); break;
-            case "14": picClub.setImageResource(R.drawable.c14); break;
-            case "16": picClub.setImageResource(R.drawable.c16); break;
-            default: picClub.setImageResource(R.drawable.logo);
+
+        switch (picClub.trim()){
+            case "0":
+                picClub_A.setImageResource(R.drawable.logo);
+                break;
+            default:
+                //decode Pic
+                byte[] decodedString = Base64.decode(picClub, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                picClub_A.setImageBitmap(decodedByte);
         }
 
 
@@ -208,6 +210,7 @@ public class ShowDetailClubActivity extends AppCompatActivity {
                 data.putExtra("id_FTE", id_FTE);
                 data.putExtra("id_CoE", id_CoE);
                 data.putExtra("id_club", id_club);
+                data.putExtra("picClub", picClub);
                 startActivity(data);
                 finish();
             }

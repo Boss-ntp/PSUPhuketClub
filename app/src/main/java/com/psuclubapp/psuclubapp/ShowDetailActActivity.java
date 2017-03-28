@@ -5,9 +5,12 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -35,6 +38,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
     String endT = null;
     String location = null;
     String followJoin = null;
+    String picAct = null;
     String nameClub = null;
 
     public static String username_sp = null;
@@ -67,6 +71,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
         endT = data.getString("endT");
         location = data.getString("location");
         followJoin = data.getString("followJoin");
+        picAct = data.getString("picAct");
         nameClub = data.getString("nameClub");
 
         final TextView subAct_A = (TextView) findViewById(R.id.subAct);
@@ -78,7 +83,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
         final TextView location_A = (TextView) findViewById(R.id.location);
         final TextView nameClub_A = (TextView) findViewById(R.id.nameClub);
         final Switch followJoin_A = (Switch) findViewById(R.id.followJoin);
-        final ImageView picAct = (ImageView) findViewById(R.id.picAct);
+        final ImageView picAct_A = (ImageView) findViewById(R.id.picAct);
 
         subAct_A.setText(subAct);
         detailAct_A.setText(detailAct);
@@ -89,15 +94,16 @@ public class ShowDetailActActivity extends AppCompatActivity {
         location_A.setText(location);
         followJoin_A.setChecked(convertStringToBoolean(followJoin));
         nameClub_A.setText(nameClub);
-        switch (id_act.trim()){
-            case "15": picAct.setImageResource(R.drawable.a15); break;
-            case "16": picAct.setImageResource(R.drawable.a16); break;
-            case "29": picAct.setImageResource(R.drawable.a29); break;
-            case "30": picAct.setImageResource(R.drawable.a30); break;
-            case "31": picAct.setImageResource(R.drawable.a31); break;
-            case "32": picAct.setImageResource(R.drawable.a32); break;
-            case "33": picAct.setImageResource(R.drawable.a33); break;
-            default: picAct.setImageResource(R.drawable.logo);
+
+        switch (picAct.trim()){
+            case "0":
+                picAct_A.setImageResource(R.drawable.logo);
+                break;
+            default:
+                //decode Pic
+                byte[] decodedString = Base64.decode(picAct, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                picAct_A.setImageBitmap(decodedByte);
         }
 
         Button deleteAct = (Button) findViewById(R.id.deleteAct);

@@ -37,6 +37,7 @@ public class ActFollowActivity extends AppCompatActivity {
     public ArrayList<String> endD_A = new ArrayList<>();
     public ArrayList<String> followJoin_A = new ArrayList<>();
     public ArrayList<String> location_A = new ArrayList<>();
+    public ArrayList<String> picAct_A = new ArrayList<>();
     public ArrayList<String> nameClub_A = new ArrayList<>();
     public ListView listActFollow;
 
@@ -138,6 +139,7 @@ public class ActFollowActivity extends AppCompatActivity {
             endD_A = new ArrayList<>();
             location_A = new ArrayList<>();
             followJoin_A = new ArrayList<>();
+            picAct_A = new ArrayList<>();
             nameClub_A = new ArrayList<>();
 
             for(int i = 0; i<j.length();i++){
@@ -151,6 +153,7 @@ public class ActFollowActivity extends AppCompatActivity {
                     String endD = j.getJSONObject(i).getString("endD");
                     String location = j.getJSONObject(i).getString("location");
                     String followJoin = j.getJSONObject(i).getString("followJoin");
+                    String picAct = j.getJSONObject(i).getString("picAct");
                     String nameClub = j.getJSONObject(i).getString("nameClub");
 
                     Log.d("sub",subAct);
@@ -164,13 +167,14 @@ public class ActFollowActivity extends AppCompatActivity {
                     endD_A.add(endD);
                     location_A.add(location);
                     followJoin_A.add(followJoin);
+                    picAct_A.add(picAct);
                     nameClub_A.add(nameClub);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                CustomList2 customList2 = new CustomList2(getBaseContext(), subAct_A,detailAct_A,id_act_A);
+                CustomList2 customList2 = new CustomList2(getBaseContext(), subAct_A,detailAct_A,id_act_A, picAct_A);
                 listActFollow.setAdapter(customList2);
 
                 listActFollow.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -186,6 +190,7 @@ public class ActFollowActivity extends AppCompatActivity {
                         data.putExtra("endD",endD_A.get(position));
                         data.putExtra("location",location_A.get(position));
                         data.putExtra("followJoin",followJoin_A.get(position));
+                        data.putExtra("picAct",picAct_A.get(position));
                         data.putExtra("nameClub",nameClub_A.get(position));
                         startActivity(data);
                         finish();

@@ -26,8 +26,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import static com.psuclubapp.psuclubapp.LoginActivity.checkLogin_sp;
-
 public class ClubHeadActivity extends AppCompatActivity {
 
     public ArrayList<String> nameClub_A = new ArrayList<>();
@@ -42,6 +40,7 @@ public class ClubHeadActivity extends AppCompatActivity {
     public ArrayList<String> id_FTE_A = new ArrayList<>();
     public ArrayList<String> id_CoE_A = new ArrayList<>();
     public ArrayList<String> id_club_A = new ArrayList<>();
+    public ArrayList<String> picClub_A = new ArrayList<>();
     public ListView listViewHead;
 
     public String username_sp = null;
@@ -146,6 +145,7 @@ public class ClubHeadActivity extends AppCompatActivity {
             id_FTE_A = new ArrayList<>();
             id_CoE_A = new ArrayList<>();
             id_club_A = new ArrayList<>();
+            picClub_A = new ArrayList<>();
 
             for (int i = 0; i < j.length(); i++) {
                 try {
@@ -161,6 +161,7 @@ public class ClubHeadActivity extends AppCompatActivity {
                     String id_FIS = j.getJSONObject(i).getString("fac_fis");
                     String id_FTE = j.getJSONObject(i).getString("fac_fte");
                     String id_CoE = j.getJSONObject(i).getString("fac_coe");
+                    String picClub = j.getJSONObject(i).getString("picClub");
 
                     Log.d("name ", nameClub);
                     // Log.d("fac ",id_fac.toString());
@@ -177,13 +178,14 @@ public class ClubHeadActivity extends AppCompatActivity {
                     id_FTE_A.add(id_FTE);
                     id_CoE_A.add(id_CoE);
                     id_club_A.add(id_club);
+                    picClub_A.add(picClub);
 
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                CustomList customList = new CustomList(getBaseContext(), nameClub_A, detailClub_A,id_club_A);
+                CustomList customList = new CustomList(getBaseContext(), nameClub_A, detailClub_A, id_club_A, picClub_A);
                 listViewHead.setAdapter(customList);
 
                 listViewHead.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -202,6 +204,7 @@ public class ClubHeadActivity extends AppCompatActivity {
                         data.putExtra("id_FTE", id_FTE_A.get(position));
                         data.putExtra("id_CoE", id_CoE_A.get(position));
                         data.putExtra("id_club", id_club_A.get(position));
+                        data.putExtra("picClub",picClub_A.get(position));
                         data.putExtra("checkHead", '1');
                         startActivity(data);
                         finish();

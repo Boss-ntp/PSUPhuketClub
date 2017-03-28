@@ -36,6 +36,8 @@ public class ActAllActivity extends AppCompatActivity {
     public ArrayList<String> startD_A = new ArrayList<>();
     public ArrayList<String> endD_A = new ArrayList<>();
     public ArrayList<String> location_A = new ArrayList<>();
+    public ArrayList<String> followJoin_A = new ArrayList<>();
+    public ArrayList<String> picAct_A = new ArrayList<>();
     public ArrayList<String> nameClub_A = new ArrayList<>();
     public ListView listActAll;
 
@@ -141,6 +143,8 @@ public class ActAllActivity extends AppCompatActivity {
             startD_A = new ArrayList<>();
             endD_A = new ArrayList<>();
             location_A = new ArrayList<>();
+            followJoin_A = new ArrayList<>();
+            picAct_A = new ArrayList<>();
             nameClub_A = new ArrayList<>();
 
             for(int i = 0; i<j.length();i++){
@@ -153,6 +157,8 @@ public class ActAllActivity extends AppCompatActivity {
                     String startD = j.getJSONObject(i).getString("startD");
                     String endD = j.getJSONObject(i).getString("endD");
                     String location = j.getJSONObject(i).getString("location");
+                    String followJoin = j.getJSONObject(i).getString("followJoin");
+                    String picAct = j.getJSONObject(i).getString("picAct");
                     String nameClub = j.getJSONObject(i).getString("nameClub");
 
                     Log.d("sub",subAct);
@@ -165,13 +171,15 @@ public class ActAllActivity extends AppCompatActivity {
                     startD_A.add(startD);
                     endD_A.add(endD);
                     location_A.add(location);
+                    followJoin_A.add(followJoin);
+                    picAct_A.add(picAct);
                     nameClub_A.add(nameClub);
 
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-                CustomList2 customList2 = new CustomList2(getBaseContext(), subAct_A,detailAct_A,id_act_A);
+                CustomList2 customList2 = new CustomList2(getBaseContext(), subAct_A,detailAct_A,id_act_A, picAct_A);
                 listActAll.setAdapter(customList2);
 
                 listActAll.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -186,6 +194,8 @@ public class ActAllActivity extends AppCompatActivity {
                         data.putExtra("startD",startD_A.get(position));
                         data.putExtra("endD",endD_A.get(position));
                         data.putExtra("location",location_A.get(position));
+                        data.putExtra("followJoin",followJoin_A.get(position));
+                        data.putExtra("picAct",picAct_A.get(position));
                         data.putExtra("nameClub",nameClub_A.get(position));
                         startActivity(data);
                         finish();
