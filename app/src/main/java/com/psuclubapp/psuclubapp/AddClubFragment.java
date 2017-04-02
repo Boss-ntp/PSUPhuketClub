@@ -48,6 +48,7 @@ public class AddClubFragment extends Fragment {
     private static final int REQ_CODE_PICK_IMAGE = 0;
     public String picClub_A = "0";
     public ImageView imageClub_A;
+    public Button addPicClub_A;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -67,8 +68,21 @@ public class AddClubFragment extends Fragment {
         final CheckBox id_FTE_A = (CheckBox)view.findViewById(R.id.id_FTE);
         final CheckBox id_CoE_A = (CheckBox)view.findViewById(R.id.id_CoE);
         imageClub_A = (ImageView)view.findViewById(R.id.picClub);
+        addPicClub_A = (Button)view.findViewById(R.id.addPicClub);
 
-        Button addPicClub_A = (Button)view.findViewById(R.id.addPicClub);
+        switch (picClub_A.trim()){
+            case "0":
+                addPicClub_A.setText("เพิ่มรูปภาพ");
+                imageClub_A.setImageResource(R.drawable.logo);
+                break;
+            default:
+                addPicClub_A.setText("เปลี่ยนรูปภาพ");
+                //decode Pic
+                byte[] decodedString = Base64.decode(picClub_A, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageClub_A.setImageBitmap(decodedByte);
+        }
+
         addPicClub_A.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void  onClick(View v) {
@@ -155,11 +169,17 @@ public class AddClubFragment extends Fragment {
                     byte[] decodedString = Base64.decode(picClub_A, Base64.DEFAULT);
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                     imageClub_A.setImageBitmap(decodedByte);
+
+                    switch (picClub_A.trim()){
+                        case "0":
+                            addPicClub_A.setText("เพิ่มรูปภาพ");
+                            break;
+                        default:
+                            addPicClub_A.setText("เปลี่ยนรูปภาพ");
+                    }
                 }
         }
     }
-
-
 
     public static class MyBase64 {
 

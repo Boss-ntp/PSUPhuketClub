@@ -51,6 +51,7 @@ public class  AddActFragment extends Fragment {
     public String picAct_A = "0";
     public ImageView imageAct_A;
     public String username_sp;
+    public Button addPicAct_A;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,9 +70,22 @@ public class  AddActFragment extends Fragment {
         final EditText location_A = (EditText)view.findViewById(R.id.location);
         final Switch followJoin_A = (Switch)view.findViewById(R.id.followJoin);
         imageAct_A = (ImageView)view.findViewById(R.id.picAct);
+        addPicAct_A = (Button)view.findViewById(R.id.addPicAct);
         final String stdID_A = username_sp;
 
-        Button addPicAct_A = (Button)view.findViewById(R.id.addPicAct);
+        switch (picAct_A.trim()){
+            case "0":
+                addPicAct_A.setText("เพิ่มรูปภาพ");
+                imageAct_A.setImageResource(R.drawable.logo);
+                break;
+            default:
+                addPicAct_A.setText("เปลี่ยนรูปภาพ");
+                //decode Pic
+                byte[] decodedString = Base64.decode(picAct_A, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                imageAct_A.setImageBitmap(decodedByte);
+        }
+
         addPicAct_A.setOnClickListener(new View.OnClickListener(){
             @Override
             public  void  onClick(View v) {
@@ -153,6 +167,14 @@ public class  AddActFragment extends Fragment {
                     byte[] decodedString = Base64.decode(picAct_A, Base64.DEFAULT);
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                     imageAct_A.setImageBitmap(decodedByte);
+
+                    switch (picAct_A.trim()){
+                        case "0":
+                            addPicAct_A.setText("เพิ่มรูปภาพ");
+                            break;
+                        default:
+                            addPicAct_A.setText("เปลี่ยนรูปภาพ");
+                    }
                 }
         }
     }

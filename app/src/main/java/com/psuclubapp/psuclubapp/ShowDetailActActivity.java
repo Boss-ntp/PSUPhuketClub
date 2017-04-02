@@ -136,6 +136,7 @@ public class ShowDetailActActivity extends AppCompatActivity {
                 data.putExtra("endT", endT);
                 data.putExtra("location", location);
                 data.putExtra("followJoin", followJoin);
+                data.putExtra("picAct", picAct);
                 startActivity(data);
                 finish();
             }

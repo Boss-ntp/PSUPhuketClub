@@ -49,7 +49,7 @@ public class EditClubActivity extends AppCompatActivity {
     String picClub = null;
 
     private static final int REQ_CODE_PICK_IMAGE = 0;
-    public String picClub_A;
+    public String picClub_A = "0";
     public ImageView imageClub_A;
     public Button editPicClub;
 
