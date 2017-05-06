@@ -73,23 +73,23 @@ public class CustomList extends BaseAdapter {
                 picClub.setImageBitmap(decodedByte);
         }
 
-//        String array[] = new String[data_id_club.size()];
-//        for(int j =0;j<data_id_club.size();j++){
-//            array[j] = data_id_club.get(position);
-//            switch (array[j]){
-//                case "6": picClub.setImageResource(R.drawable.c6); break;
-//                case "7": picClub.setImageResource(R.drawable.c7); break;
-//                case "8": picClub.setImageResource(R.drawable.c8); break;
-//                case "9": picClub.setImageResource(R.drawable.c9); break;
-//                case "10": picClub.setImageResource(R.drawable.c10); break;
-//                case "11": picClub.setImageResource(R.drawable.c11); break;
-//                case "12": picClub.setImageResource(R.drawable.c12); break;
-//                case "13": picClub.setImageResource(R.drawable.c13); break;
-//                case "14": picClub.setImageResource(R.drawable.c14); break;
-//                case "16": picClub.setImageResource(R.drawable.c16); break;
-//                default: picClub.setImageResource(R.drawable.logo);
-//            }
-//        }
+        String array[] = new String[data_id_club.size()];
+        for(int j =0;j<data_id_club.size();j++){
+            array[j] = data_id_club.get(position);
+            switch (array[j]){
+                case "6": picClub.setImageResource(R.drawable.c6); break;
+                case "7": picClub.setImageResource(R.drawable.c7); break;
+                case "8": picClub.setImageResource(R.drawable.c8); break;
+                case "9": picClub.setImageResource(R.drawable.c9); break;
+                case "10": picClub.setImageResource(R.drawable.c10); break;
+                case "11": picClub.setImageResource(R.drawable.c11); break;
+                case "12": picClub.setImageResource(R.drawable.c12); break;
+                case "13": picClub.setImageResource(R.drawable.c13); break;
+                case "14": picClub.setImageResource(R.drawable.c14); break;
+                case "16": picClub.setImageResource(R.drawable.c16); break;
+                default: picClub.setImageResource(R.drawable.logo);
+            }
+        }
 
 
 

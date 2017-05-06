@@ -158,7 +158,7 @@ public class  AddActFragment extends Fragment {
                     Log.d("Bitmap_picAct", String.valueOf(yourSelectedImage));
 
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    yourSelectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    yourSelectedImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                     byte[] imageBytes = stream.toByteArray();
                     picAct_A = MyBase64.encode(imageBytes);
                     Log.d("base64_picAct", picAct_A);

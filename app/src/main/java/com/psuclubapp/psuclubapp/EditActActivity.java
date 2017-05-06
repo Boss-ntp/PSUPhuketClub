@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.provider.MediaStore;
@@ -97,11 +98,26 @@ public class EditActActivity extends AppCompatActivity {
         location_A.setText(location);
         followJoin_A.setChecked(convertStringToBoolean(followJoin));
 
+
+
+
+
         picAct_A = picAct;
         switch (picAct_A.trim()){
             case "0":
-                editPicAct.setText("เพิ่มรูปภาพ");
-                imageAct_A.setImageResource(R.drawable.logo);
+                //editPicAct.setText("เพิ่มรูปภาพ");
+                //imageAct_A.setImageResource(R.drawable.logo);
+                editPicAct.setText("เปลี่ยนรูปภาพ");
+                switch (id_act){
+                    case "15": imageAct_A.setImageResource(R.drawable.a15); break;
+                    case "16": imageAct_A.setImageResource(R.drawable.a16); break;
+                    case "29": imageAct_A.setImageResource(R.drawable.a29); break;
+                    case "30": imageAct_A.setImageResource(R.drawable.a30); break;
+                    case "31": imageAct_A.setImageResource(R.drawable.a31); break;
+                    case "32": imageAct_A.setImageResource(R.drawable.a32); break;
+                    case "33": imageAct_A.setImageResource(R.drawable.a33); break;
+                    default:imageAct_A.setImageResource(R.drawable.logo);
+                }
                 break;
             default:
                 editPicAct.setText("เปลี่ยนรูปภาพ");
@@ -186,11 +202,15 @@ public class EditActActivity extends AppCompatActivity {
                     String filePath = cursor.getString(columnIndex);
                     cursor.close();
 
-                    Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath);
+                    BitmapFactory.Options options = new BitmapFactory.Options();
+                    options.inSampleSize = 2; // Reduces the image resolution
+                    Log.d("filePath",filePath);
+                    Log.d("options",String.valueOf(options));
+                    Bitmap yourSelectedImage = BitmapFactory.decodeFile(filePath, options);
                     Log.d("Bitmap_picAct", String.valueOf(yourSelectedImage));
 
                     ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                    yourSelectedImage.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                    yourSelectedImage.compress(Bitmap.CompressFormat.JPEG, 100, stream);
                     byte[] imageBytes = stream.toByteArray();
                     picAct_A = AddClubFragment.MyBase64.encode(imageBytes);
                     Log.d("base64_picAct", picAct_A);
@@ -198,7 +218,7 @@ public class EditActActivity extends AppCompatActivity {
                     //decode Pic
                     byte[] decodedString = Base64.decode(picAct_A, Base64.DEFAULT);
                     Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-                    imageAct_A.setImageBitmap(decodedByte);
+                    imageAct_A.setImageBitmap(Bitmap.createScaledBitmap(decodedByte,120,120,false));
 
                     switch (picAct_A.trim()){
                         case "0":

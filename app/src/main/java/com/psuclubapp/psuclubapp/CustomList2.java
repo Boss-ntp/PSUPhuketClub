@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,25 +68,36 @@ public class CustomList2 extends BaseAdapter {
                 break;
             default:
                 //decode Pic
+//                byte[] decodedString = Base64.decode(data_picAct.get(position), Base64.DEFAULT);
+//                Log.d("decodedString", String.valueOf(decodedString));
+//
+//                BitmapFactory.Options opt = new BitmapFactory.Options();
+//                opt.inDensity = 100;
+//                opt.inTargetDensity = 100;
+//                opt.outHeight = 120;
+//                opt.outWidth = 120;
+//                opt.inJustDecodeBounds = true;
+//                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length, opt);
+//                Log.d("decodedByte", String.valueOf(decodedByte));
+//                picAct.setImageBitmap(Bitmap.createScaledBitmap(decodedByte,120,120,false));
                 byte[] decodedString = Base64.decode(data_picAct.get(position), Base64.DEFAULT);
                 Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
                 picAct.setImageBitmap(decodedByte);
         }
 
-//        String array[] = new String[data_id_act.size()];
-//        for(int j =0;j<data_id_act.size();j++){
-//            array[j] = data_id_act.get(position);
-//            switch (array[j]){
-//                case "15": picAct.setImageResource(R.drawable.a15); break;
-//                case "16": picAct.setImageResource(R.drawable.a16); break;
-//                case "29": picAct.setImageResource(R.drawable.a29); break;
-//                case "30": picAct.setImageResource(R.drawable.a30); break;
-//                case "31": picAct.setImageResource(R.drawable.a31); break;
-//                case "32": picAct.setImageResource(R.drawable.a32); break;
-//                case "33": picAct.setImageResource(R.drawable.a33); break;
-//                default: picAct.setImageBitmap(decodedByte);
-//            }
-//        }
+        String array[] = new String[data_id_act.size()];
+        for(int j =0;j<data_id_act.size();j++){
+            array[j] = data_id_act.get(position);
+            switch (array[j]){
+                case "15": picAct.setImageResource(R.drawable.a15); break;
+                case "16": picAct.setImageResource(R.drawable.a16); break;
+                case "29": picAct.setImageResource(R.drawable.a29); break;
+                case "30": picAct.setImageResource(R.drawable.a30); break;
+                case "31": picAct.setImageResource(R.drawable.a31); break;
+                case "32": picAct.setImageResource(R.drawable.a32); break;
+                case "33": picAct.setImageResource(R.drawable.a33); break;
+            }
+        }
 
         return convertView;
     }

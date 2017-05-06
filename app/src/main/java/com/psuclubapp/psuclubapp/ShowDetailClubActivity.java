@@ -127,6 +127,23 @@ public class ShowDetailClubActivity extends AppCompatActivity {
                 picClub_A.setImageBitmap(decodedByte);
         }
 
+        switch (id_club.trim()){
+            case "6": picClub_A.setImageResource(R.drawable.c6); break;
+            case "7": picClub_A.setImageResource(R.drawable.c7); break;
+            case "8": picClub_A.setImageResource(R.drawable.c8); break;
+            case "9": picClub_A.setImageResource(R.drawable.c9); break;
+            case "10": picClub_A.setImageResource(R.drawable.c10); break;
+            case "11": picClub_A.setImageResource(R.drawable.c11); break;
+            case "12": picClub_A.setImageResource(R.drawable.c12); break;
+            case "13": picClub_A.setImageResource(R.drawable.c13); break;
+            case "14": picClub_A.setImageResource(R.drawable.c14); break;
+            case "16": picClub_A.setImageResource(R.drawable.c16); break;
+            default:
+                byte[] decodedString = Base64.decode(picClub, Base64.DEFAULT);
+                Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+                picClub_A.setImageBitmap(decodedByte);
+        }
+
 
         Button regisClub = (Button) findViewById(R.id.regisClub);
         Button exitClub = (Button) findViewById(R.id.exitClub);

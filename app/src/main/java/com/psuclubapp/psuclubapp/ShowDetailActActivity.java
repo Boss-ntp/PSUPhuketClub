@@ -106,6 +106,30 @@ public class ShowDetailActActivity extends AppCompatActivity {
                 picAct_A.setImageBitmap(decodedByte);
         }
 
+        switch (id_act.trim()) {
+            case "15":
+                picAct_A.setImageResource(R.drawable.a15);
+                break;
+            case "16":
+                picAct_A.setImageResource(R.drawable.a16);
+                break;
+            case "29":
+                picAct_A.setImageResource(R.drawable.a29);
+                break;
+            case "30":
+                picAct_A.setImageResource(R.drawable.a30);
+                break;
+            case "31":
+                picAct_A.setImageResource(R.drawable.a31);
+                break;
+            case "32":
+                picAct_A.setImageResource(R.drawable.a32);
+                break;
+            case "33":
+                picAct_A.setImageResource(R.drawable.a33);
+                break;
+        }
+
         Button deleteAct = (Button) findViewById(R.id.deleteAct);
         Button editAct = (Button) findViewById(R.id.editAct);
         Button callBack = (Button) findViewById(R.id.callBack);
